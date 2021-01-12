@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testmgt_newModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="answerTab">
+    <Key>
+      <PropertyRef Name="ansId" />
+    </Key>
+    <Property Name="ansId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="quesId" Type="Int32" />
+    <Property Name="answer" Type="Int32" />
+    <Property Name="uId" Type="Int32" />
+    <NavigationProperty Name="questionTab" Relationship="Self.FK__answerTab__quesI__5CD6CB2B" FromRole="answerTab" ToRole="questionTab" />
+    <NavigationProperty Name="userTab" Relationship="Self.FK__answerTab__uId__5DCAEF64" FromRole="answerTab" ToRole="userTab" />
+  </EntityType>
+  <EntityType Name="assignSubTeacherTab">
+    <Key>
+      <PropertyRef Name="aId" />
+    </Key>
+    <Property Name="aId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uId" Type="Int32" />
+    <Property Name="subId" Type="Int32" />
+    <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="subjectTab" Relationship="Self.FK__assignSub__subId__37A5467C" FromRole="assignSubTeacherTab" ToRole="subjectTab" />
+    <NavigationProperty Name="userTab" Relationship="Self.FK__assignSubTe__uId__36B12243" FromRole="assignSubTeacherTab" ToRole="userTab" />
+    <NavigationProperty Name="testTabs" Relationship="Self.FK__testTab__aId__3C69FB99" FromRole="assignSubTeacherTab" ToRole="testTab" />
+  </EntityType>
+  <EntityType Name="courseTab">
+    <Key>
+      <PropertyRef Name="cId" />
+    </Key>
+    <Property Name="cId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="subjectTabs" Relationship="Self.FK__subjectTab__cId__145C0A3F" FromRole="courseTab" ToRole="subjectTab" />
+    <NavigationProperty Name="testTabs" Relationship="Self.FK__testTab__cId__3A81B327" FromRole="courseTab" ToRole="testTab" />
+    <NavigationProperty Name="userTabs" Relationship="Self.FK__userTab__cId__1920BF5C" FromRole="courseTab" ToRole="userTab" />
+  </EntityType>
+  <EntityType Name="questionTab">
+    <Key>
+      <PropertyRef Name="quesId" />
+    </Key>
+    <Property Name="quesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ques" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="opt1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="opt2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="opt3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="opt4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="answer" Type="Int32" />
+    <Property Name="tstId" Type="Int32" />
+    <Property Name="mark" Type="Int32" />
+    <NavigationProperty Name="answerTabs" Relationship="Self.FK__answerTab__quesI__5CD6CB2B" FromRole="questionTab" ToRole="answerTab" />
+    <NavigationProperty Name="testTab" Relationship="Self.FK__questionT__tstId__49C3F6B7" FromRole="questionTab" ToRole="testTab" />
+  </EntityType>
+  <EntityType Name="roleTab">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="userTabs" Relationship="Self.FK__userTab__roleId__182C9B23" FromRole="roleTab" ToRole="userTab" />
+  </EntityType>
+  <EntityType Name="score">
+    <Key>
+      <PropertyRef Name="scoreId" />
+    </Key>
+    <Property Name="scoreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="score1" Type="Int32" />
+    <Property Name="timespend" Type="Int32" />
+    <Property Name="tstId" Type="Int32" />
+    <NavigationProperty Name="testTab" Relationship="Self.FK__score__tstId__02FC7413" FromRole="score" ToRole="testTab" />
+  </EntityType>
+  <EntityType Name="subjectTab">
+    <Key>
+      <PropertyRef Name="subId" />
+    </Key>
+    <Property Name="subId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="cId" Type="Int32" />
+    <NavigationProperty Name="assignSubTeacherTabs" Relationship="Self.FK__assignSub__subId__37A5467C" FromRole="subjectTab" ToRole="assignSubTeacherTab" />
+    <NavigationProperty Name="courseTab" Relationship="Self.FK__subjectTab__cId__145C0A3F" FromRole="subjectTab" ToRole="courseTab" />
+    <NavigationProperty Name="testTabs" Relationship="Self.FK__testTab__subId__3B75D760" FromRole="subjectTab" ToRole="testTab" />
+  </EntityType>
+  <EntityType Name="testTab">
+    <Key>
+      <PropertyRef Name="tstId" />
+    </Key>
+    <Property Name="tstId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cId" Type="Int32" />
+    <Property Name="subId" Type="Int32" />
+    <Property Name="aId" Type="Int32" />
+    <NavigationProperty Name="assignSubTeacherTab" Relationship="Self.FK__testTab__aId__3C69FB99" FromRole="testTab" ToRole="assignSubTeacherTab" />
+    <NavigationProperty Name="courseTab" Relationship="Self.FK__testTab__cId__3A81B327" FromRole="testTab" ToRole="courseTab" />
+    <NavigationProperty Name="questionTabs" Relationship="Self.FK__questionT__tstId__49C3F6B7" FromRole="testTab" ToRole="questionTab" />
+    <NavigationProperty Name="scores" Relationship="Self.FK__score__tstId__02FC7413" FromRole="testTab" ToRole="score" />
+    <NavigationProperty Name="subjectTab" Relationship="Self.FK__testTab__subId__3B75D760" FromRole="testTab" ToRole="subjectTab" />
+  </EntityType>
+  <EntityType Name="userTab">
+    <Key>
+      <PropertyRef Name="uId" />
+    </Key>
+    <Property Name="uId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="roleId" Type="Int32" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="cId" Type="Int32" />
+    <NavigationProperty Name="answerTabs" Relationship="Self.FK__answerTab__uId__5DCAEF64" FromRole="userTab" ToRole="answerTab" />
+    <NavigationProperty Name="assignSubTeacherTabs" Relationship="Self.FK__assignSubTe__uId__36B12243" FromRole="userTab" ToRole="assignSubTeacherTab" />
+    <NavigationProperty Name="courseTab" Relationship="Self.FK__userTab__cId__1920BF5C" FromRole="userTab" ToRole="courseTab" />
+    <NavigationProperty Name="roleTab" Relationship="Self.FK__userTab__roleId__182C9B23" FromRole="userTab" ToRole="roleTab" />
+  </EntityType>
+  <Association Name="FK__answerTab__quesI__5CD6CB2B">
+    <End Role="questionTab" Type="Self.questionTab" Multiplicity="0..1" />
+    <End Role="answerTab" Type="Self.answerTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="questionTab">
+        <PropertyRef Name="quesId" />
+      </Principal>
+      <Dependent Role="answerTab">
+        <PropertyRef Name="quesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__answerTab__uId__5DCAEF64">
+    <End Role="userTab" Type="Self.userTab" Multiplicity="0..1" />
+    <End Role="answerTab" Type="Self.answerTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userTab">
+        <PropertyRef Name="uId" />
+      </Principal>
+      <Dependent Role="answerTab">
+        <PropertyRef Name="uId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__assignSub__subId__37A5467C">
+    <End Role="subjectTab" Type="Self.subjectTab" Multiplicity="0..1" />
+    <End Role="assignSubTeacherTab" Type="Self.assignSubTeacherTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subjectTab">
+        <PropertyRef Name="subId" />
+      </Principal>
+      <Dependent Role="assignSubTeacherTab">
+        <PropertyRef Name="subId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__assignSubTe__uId__36B12243">
+    <End Role="userTab" Type="Self.userTab" Multiplicity="0..1" />
+    <End Role="assignSubTeacherTab" Type="Self.assignSubTeacherTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userTab">
+        <PropertyRef Name="uId" />
+      </Principal>
+      <Dependent Role="assignSubTeacherTab">
+        <PropertyRef Name="uId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__testTab__aId__3C69FB99">
+    <End Role="assignSubTeacherTab" Type="Self.assignSubTeacherTab" Multiplicity="0..1" />
+    <End Role="testTab" Type="Self.testTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="assignSubTeacherTab">
+        <PropertyRef Name="aId" />
+      </Principal>
+      <Dependent Role="testTab">
+        <PropertyRef Name="aId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__subjectTab__cId__145C0A3F">
+    <End Role="courseTab" Type="Self.courseTab" Multiplicity="0..1" />
+    <End Role="subjectTab" Type="Self.subjectTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseTab">
+        <PropertyRef Name="cId" />
+      </Principal>
+      <Dependent Role="subjectTab">
+        <PropertyRef Name="cId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__testTab__cId__3A81B327">
+    <End Role="courseTab" Type="Self.courseTab" Multiplicity="0..1" />
+    <End Role="testTab" Type="Self.testTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseTab">
+        <PropertyRef Name="cId" />
+      </Principal>
+      <Dependent Role="testTab">
+        <PropertyRef Name="cId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__userTab__cId__1920BF5C">
+    <End Role="courseTab" Type="Self.courseTab" Multiplicity="0..1" />
+    <End Role="userTab" Type="Self.userTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseTab">
+        <PropertyRef Name="cId" />
+      </Principal>
+      <Dependent Role="userTab">
+        <PropertyRef Name="cId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__questionT__tstId__49C3F6B7">
+    <End Role="testTab" Type="Self.testTab" Multiplicity="0..1" />
+    <End Role="questionTab" Type="Self.questionTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="testTab">
+        <PropertyRef Name="tstId" />
+      </Principal>
+      <Dependent Role="questionTab">
+        <PropertyRef Name="tstId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__userTab__roleId__182C9B23">
+    <End Role="roleTab" Type="Self.roleTab" Multiplicity="0..1" />
+    <End Role="userTab" Type="Self.userTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roleTab">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="userTab">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__score__tstId__02FC7413">
+    <End Role="testTab" Type="Self.testTab" Multiplicity="0..1" />
+    <End Role="score" Type="Self.score" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="testTab">
+        <PropertyRef Name="tstId" />
+      </Principal>
+      <Dependent Role="score">
+        <PropertyRef Name="tstId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__testTab__subId__3B75D760">
+    <End Role="subjectTab" Type="Self.subjectTab" Multiplicity="0..1" />
+    <End Role="testTab" Type="Self.testTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subjectTab">
+        <PropertyRef Name="subId" />
+      </Principal>
+      <Dependent Role="testTab">
+        <PropertyRef Name="subId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testmgt_newEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="answerTabs" EntityType="Self.answerTab" />
+    <EntitySet Name="assignSubTeacherTabs" EntityType="Self.assignSubTeacherTab" />
+    <EntitySet Name="courseTabs" EntityType="Self.courseTab" />
+    <EntitySet Name="questionTabs" EntityType="Self.questionTab" />
+    <EntitySet Name="roleTabs" EntityType="Self.roleTab" />
+    <EntitySet Name="scores" EntityType="Self.score" />
+    <EntitySet Name="subjectTabs" EntityType="Self.subjectTab" />
+    <EntitySet Name="testTabs" EntityType="Self.testTab" />
+    <EntitySet Name="userTabs" EntityType="Self.userTab" />
+    <AssociationSet Name="FK__answerTab__quesI__5CD6CB2B" Association="Self.FK__answerTab__quesI__5CD6CB2B">
+      <End Role="questionTab" EntitySet="questionTabs" />
+      <End Role="answerTab" EntitySet="answerTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__answerTab__uId__5DCAEF64" Association="Self.FK__answerTab__uId__5DCAEF64">
+      <End Role="userTab" EntitySet="userTabs" />
+      <End Role="answerTab" EntitySet="answerTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__assignSub__subId__37A5467C" Association="Self.FK__assignSub__subId__37A5467C">
+      <End Role="subjectTab" EntitySet="subjectTabs" />
+      <End Role="assignSubTeacherTab" EntitySet="assignSubTeacherTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__assignSubTe__uId__36B12243" Association="Self.FK__assignSubTe__uId__36B12243">
+      <End Role="userTab" EntitySet="userTabs" />
+      <End Role="assignSubTeacherTab" EntitySet="assignSubTeacherTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__testTab__aId__3C69FB99" Association="Self.FK__testTab__aId__3C69FB99">
+      <End Role="assignSubTeacherTab" EntitySet="assignSubTeacherTabs" />
+      <End Role="testTab" EntitySet="testTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__subjectTab__cId__145C0A3F" Association="Self.FK__subjectTab__cId__145C0A3F">
+      <End Role="courseTab" EntitySet="courseTabs" />
+      <End Role="subjectTab" EntitySet="subjectTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__testTab__cId__3A81B327" Association="Self.FK__testTab__cId__3A81B327">
+      <End Role="courseTab" EntitySet="courseTabs" />
+      <End Role="testTab" EntitySet="testTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__userTab__cId__1920BF5C" Association="Self.FK__userTab__cId__1920BF5C">
+      <End Role="courseTab" EntitySet="courseTabs" />
+      <End Role="userTab" EntitySet="userTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__questionT__tstId__49C3F6B7" Association="Self.FK__questionT__tstId__49C3F6B7">
+      <End Role="testTab" EntitySet="testTabs" />
+      <End Role="questionTab" EntitySet="questionTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__userTab__roleId__182C9B23" Association="Self.FK__userTab__roleId__182C9B23">
+      <End Role="roleTab" EntitySet="roleTabs" />
+      <End Role="userTab" EntitySet="userTabs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__score__tstId__02FC7413" Association="Self.FK__score__tstId__02FC7413">
+      <End Role="testTab" EntitySet="testTabs" />
+      <End Role="score" EntitySet="scores" />
+    </AssociationSet>
+    <AssociationSet Name="FK__testTab__subId__3B75D760" Association="Self.FK__testTab__subId__3B75D760">
+      <End Role="subjectTab" EntitySet="subjectTabs" />
+      <End Role="testTab" EntitySet="testTabs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

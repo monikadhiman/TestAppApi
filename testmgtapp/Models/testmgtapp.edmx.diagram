@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5ab4047409854449a3f653d2114687d9" Name="Diagram1" ZoomLevel="110">
+        <EntityTypeShape EntityType="testmgt_newModel.answerTab" Width="1.5" PointX="12" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="testmgt_newModel.assignSubTeacherTab" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="testmgt_newModel.courseTab" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="testmgt_newModel.questionTab" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="testmgt_newModel.roleTab" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="testmgt_newModel.score" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="testmgt_newModel.subjectTab" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="testmgt_newModel.testTab" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="testmgt_newModel.userTab" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="testmgt_newModel.FK__answerTab__quesI__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__answerTab__uId__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__assignSub__subId__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__assignSubTe__uId__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__testTab__aId__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__subjectTab__cId__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__testTab__cId__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__userTab__cId__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__questionT__tstId__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__userTab__roleId__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__score__tstId__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="testmgt_newModel.FK__testTab__subId__3B75D760" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

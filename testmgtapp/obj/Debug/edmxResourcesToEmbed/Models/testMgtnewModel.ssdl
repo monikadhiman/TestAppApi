@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testmgt_newModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="assignSubTeacherTab">
+    <Key>
+      <PropertyRef Name="aId" />
+    </Key>
+    <Property Name="aId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uId" Type="int" />
+    <Property Name="subId" Type="int" />
+  </EntityType>
+  <EntityType Name="courseTab">
+    <Key>
+      <PropertyRef Name="cId" />
+    </Key>
+    <Property Name="cId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cName" Type="varchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="questionTab">
+    <Key>
+      <PropertyRef Name="quesId" />
+    </Key>
+    <Property Name="quesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ques" Type="varchar(max)" />
+    <Property Name="opt1" Type="varchar" MaxLength="250" />
+    <Property Name="opt2" Type="varchar" MaxLength="250" />
+    <Property Name="opt3" Type="varchar" MaxLength="250" />
+    <Property Name="answer" Type="varchar" MaxLength="250" />
+    <Property Name="tstId" Type="int" />
+  </EntityType>
+  <EntityType Name="roleTab">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="studentRemarkTab">
+    <Key>
+      <PropertyRef Name="rId" />
+    </Key>
+    <Property Name="rId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uId" Type="int" />
+    <Property Name="totalMarks" Type="int" />
+    <Property Name="obtainedMarks" Type="int" />
+    <Property Name="tstId" Type="int" />
+    <Property Name="subId" Type="int" />
+  </EntityType>
+  <EntityType Name="subjectTab">
+    <Key>
+      <PropertyRef Name="subId" />
+    </Key>
+    <Property Name="subId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subName" Type="varchar" MaxLength="3" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="cId" Type="int" />
+  </EntityType>
+  <EntityType Name="testTab">
+    <Key>
+      <PropertyRef Name="tstId" />
+    </Key>
+    <Property Name="tstId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="aId" Type="int" />
+  </EntityType>
+  <EntityType Name="userTab">
+    <Key>
+      <PropertyRef Name="uId" />
+    </Key>
+    <Property Name="uId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fullName" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="roleId" Type="int" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <Association Name="FK__assignSub__subId__1ED998B2">
+    <End Role="subjectTab" Type="Self.subjectTab" Multiplicity="0..1" />
+    <End Role="assignSubTeacherTab" Type="Self.assignSubTeacherTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subjectTab">
+        <PropertyRef Name="subId" />
+      </Principal>
+      <Dependent Role="assignSubTeacherTab">
+        <PropertyRef Name="subId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__assignSubTe__uId__1DE57479">
+    <End Role="userTab" Type="Self.userTab" Multiplicity="0..1" />
+    <End Role="assignSubTeacherTab" Type="Self.assignSubTeacherTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userTab">
+        <PropertyRef Name="uId" />
+      </Principal>
+      <Dependent Role="assignSubTeacherTab">
+        <PropertyRef Name="uId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__questionT__tstId__24927208">
+    <End Role="testTab" Type="Self.testTab" Multiplicity="0..1" />
+    <End Role="questionTab" Type="Self.questionTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="testTab">
+        <PropertyRef Name="tstId" />
+      </Principal>
+      <Dependent Role="questionTab">
+        <PropertyRef Name="tstId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__studentRe__subId__29572725">
+    <End Role="subjectTab" Type="Self.subjectTab" Multiplicity="0..1" />
+    <End Role="studentRemarkTab" Type="Self.studentRemarkTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subjectTab">
+        <PropertyRef Name="subId" />
+      </Principal>
+      <Dependent Role="studentRemarkTab">
+        <PropertyRef Name="subId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__studentRe__tstId__286302EC">
+    <End Role="testTab" Type="Self.testTab" Multiplicity="0..1" />
+    <End Role="studentRemarkTab" Type="Self.studentRemarkTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="testTab">
+        <PropertyRef Name="tstId" />
+      </Principal>
+      <Dependent Role="studentRemarkTab">
+        <PropertyRef Name="tstId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__studentRema__uId__276EDEB3">
+    <End Role="userTab" Type="Self.userTab" Multiplicity="0..1" />
+    <End Role="studentRemarkTab" Type="Self.studentRemarkTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userTab">
+        <PropertyRef Name="uId" />
+      </Principal>
+      <Dependent Role="studentRemarkTab">
+        <PropertyRef Name="uId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__subjectTab__cId__145C0A3F">
+    <End Role="courseTab" Type="Self.courseTab" Multiplicity="0..1" />
+    <End Role="subjectTab" Type="Self.subjectTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseTab">
+        <PropertyRef Name="cId" />
+      </Principal>
+      <Dependent Role="subjectTab">
+        <PropertyRef Name="cId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__testTab__aId__21B6055D">
+    <End Role="assignSubTeacherTab" Type="Self.assignSubTeacherTab" Multiplicity="0..1" />
+    <End Role="testTab" Type="Self.testTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="assignSubTeacherTab">
+        <PropertyRef Name="aId" />
+      </Principal>
+      <Dependent Role="testTab">
+        <PropertyRef Name="aId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__userTab__roleId__182C9B23">
+    <End Role="roleTab" Type="Self.roleTab" Multiplicity="0..1" />
+    <End Role="userTab" Type="Self.userTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roleTab">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="userTab">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testmgt_newModelStoreContainer">
+    <EntitySet Name="assignSubTeacherTab" EntityType="Self.assignSubTeacherTab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="courseTab" EntityType="Self.courseTab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="questionTab" EntityType="Self.questionTab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roleTab" EntityType="Self.roleTab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="studentRemarkTab" EntityType="Self.studentRemarkTab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subjectTab" EntityType="Self.subjectTab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="testTab" EntityType="Self.testTab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userTab" EntityType="Self.userTab" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__assignSub__subId__1ED998B2" Association="Self.FK__assignSub__subId__1ED998B2">
+      <End Role="subjectTab" EntitySet="subjectTab" />
+      <End Role="assignSubTeacherTab" EntitySet="assignSubTeacherTab" />
+    </AssociationSet>
+    <AssociationSet Name="FK__assignSubTe__uId__1DE57479" Association="Self.FK__assignSubTe__uId__1DE57479">
+      <End Role="userTab" EntitySet="userTab" />
+      <End Role="assignSubTeacherTab" EntitySet="assignSubTeacherTab" />
+    </AssociationSet>
+    <AssociationSet Name="FK__questionT__tstId__24927208" Association="Self.FK__questionT__tstId__24927208">
+      <End Role="testTab" EntitySet="testTab" />
+      <End Role="questionTab" EntitySet="questionTab" />
+    </AssociationSet>
+    <AssociationSet Name="FK__studentRe__subId__29572725" Association="Self.FK__studentRe__subId__29572725">
+      <End Role="subjectTab" EntitySet="subjectTab" />
+      <End Role="studentRemarkTab" EntitySet="studentRemarkTab" />
+    </AssociationSet>
+    <AssociationSet Name="FK__studentRe__tstId__286302EC" Association="Self.FK__studentRe__tstId__286302EC">
+      <End Role="testTab" EntitySet="testTab" />
+      <End Role="studentRemarkTab" EntitySet="studentRemarkTab" />
+    </AssociationSet>
+    <AssociationSet Name="FK__studentRema__uId__276EDEB3" Association="Self.FK__studentRema__uId__276EDEB3">
+      <End Role="userTab" EntitySet="userTab" />
+      <End Role="studentRemarkTab" EntitySet="studentRemarkTab" />
+    </AssociationSet>
+    <AssociationSet Name="FK__subjectTab__cId__145C0A3F" Association="Self.FK__subjectTab__cId__145C0A3F">
+      <End Role="courseTab" EntitySet="courseTab" />
+      <End Role="subjectTab" EntitySet="subjectTab" />
+    </AssociationSet>
+    <AssociationSet Name="FK__testTab__aId__21B6055D" Association="Self.FK__testTab__aId__21B6055D">
+      <End Role="assignSubTeacherTab" EntitySet="assignSubTeacherTab" />
+      <End Role="testTab" EntitySet="testTab" />
+    </AssociationSet>
+    <AssociationSet Name="FK__userTab__roleId__182C9B23" Association="Self.FK__userTab__roleId__182C9B23">
+      <End Role="roleTab" EntitySet="roleTab" />
+      <End Role="userTab" EntitySet="userTab" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="testmgt_newModelStoreContainer" CdmEntityContainer="testmgt_newEntities">
+    <EntitySetMapping Name="answerTabs">
+      <EntityTypeMapping TypeName="testmgt_newModel.answerTab">
+        <MappingFragment StoreEntitySet="answerTab">
+          <ScalarProperty Name="ansId" ColumnName="ansId" />
+          <ScalarProperty Name="quesId" ColumnName="quesId" />
+          <ScalarProperty Name="answer" ColumnName="answer" />
+          <ScalarProperty Name="uId" ColumnName="uId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assignSubTeacherTabs">
+      <EntityTypeMapping TypeName="testmgt_newModel.assignSubTeacherTab">
+        <MappingFragment StoreEntitySet="assignSubTeacherTab">
+          <ScalarProperty Name="aId" ColumnName="aId" />
+          <ScalarProperty Name="uId" ColumnName="uId" />
+          <ScalarProperty Name="subId" ColumnName="subId" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courseTabs">
+      <EntityTypeMapping TypeName="testmgt_newModel.courseTab">
+        <MappingFragment StoreEntitySet="courseTab">
+          <ScalarProperty Name="cId" ColumnName="cId" />
+          <ScalarProperty Name="cName" ColumnName="cName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="questionTabs">
+      <EntityTypeMapping TypeName="testmgt_newModel.questionTab">
+        <MappingFragment StoreEntitySet="questionTab">
+          <ScalarProperty Name="quesId" ColumnName="quesId" />
+          <ScalarProperty Name="ques" ColumnName="ques" />
+          <ScalarProperty Name="opt1" ColumnName="opt1" />
+          <ScalarProperty Name="opt2" ColumnName="opt2" />
+          <ScalarProperty Name="opt3" ColumnName="opt3" />
+          <ScalarProperty Name="opt4" ColumnName="opt4" />
+          <ScalarProperty Name="answer" ColumnName="answer" />
+          <ScalarProperty Name="tstId" ColumnName="tstId" />
+          <ScalarProperty Name="mark" ColumnName="mark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roleTabs">
+      <EntityTypeMapping TypeName="testmgt_newModel.roleTab">
+        <MappingFragment StoreEntitySet="roleTab">
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="scores">
+      <EntityTypeMapping TypeName="testmgt_newModel.score">
+        <MappingFragment StoreEntitySet="score">
+          <ScalarProperty Name="scoreId" ColumnName="scoreId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="score1" ColumnName="score" />
+          <ScalarProperty Name="timespend" ColumnName="timespend" />
+          <ScalarProperty Name="tstId" ColumnName="tstId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subjectTabs">
+      <EntityTypeMapping TypeName="testmgt_newModel.subjectTab">
+        <MappingFragment StoreEntitySet="subjectTab">
+          <ScalarProperty Name="subId" ColumnName="subId" />
+          <ScalarProperty Name="subName" ColumnName="subName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="cId" ColumnName="cId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="testTabs">
+      <EntityTypeMapping TypeName="testmgt_newModel.testTab">
+        <MappingFragment StoreEntitySet="testTab">
+          <ScalarProperty Name="tstId" ColumnName="tstId" />
+          <ScalarProperty Name="tstName" ColumnName="tstName" />
+          <ScalarProperty Name="cId" ColumnName="cId" />
+          <ScalarProperty Name="subId" ColumnName="subId" />
+          <ScalarProperty Name="aId" ColumnName="aId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userTabs">
+      <EntityTypeMapping TypeName="testmgt_newModel.userTab">
+        <MappingFragment StoreEntitySet="userTab">
+          <ScalarProperty Name="uId" ColumnName="uId" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="cId" ColumnName="cId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
